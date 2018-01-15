@@ -90,8 +90,8 @@ def double_number():
 # Points will be assigned for each specification in the problem.
 
 @app.route('/problem4form',methods=["POST","GET"])
-## The user will check if they like music, kind of like music, or don't like music, and then enter their favorite artist in the text box.
-## A list of the songs of the user's favorite artist will return as well as the prior prompt.
+## The user will check what music platform they listen to their music on, and then enter their favorite artist in the text box.
+## A list of the albums of the user's favorite artist will return as well as the prior prompt.
 def music_artist():
   s = """
   <!DOCTYPE html>
