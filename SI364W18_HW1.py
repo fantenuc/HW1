@@ -98,10 +98,11 @@ def music_artist():
   <html>
   <body>
   <form action="http://localhost:5000/problem4form" method='POST'>
-    Do you like music?<br>
-    <input type="checkbox" name="yesmusic" value="Yes"> I like music<br>
-    <input type="checkbox" name="maybemusic" value="Maybe"> I kind of like music<br>
-    <input type="checkbox" name="nomusic" value="No"> I don't like music<br>
+    On what platform do you listen to music?<br>
+    <input type="checkbox" name="itunesplatform" value="itunesplatform"> iTunes<br>
+    <input type="checkbox" name="spotifyplatform" value="spotifyplatform"> Spotify<br>
+    <input type="checkbox" name="soundcloudplatform" value="soundcloudplatform"> SoundCloud<br>
+    <input type="checkbox" name="other" value="other"> Other<br>
     Enter your Favorite Music Artist:<br><input type="text" name="artistname"<br>
     <input type="submit" value="Submit">
   </form>
@@ -110,13 +111,13 @@ def music_artist():
 """
   if request.method == "POST":
     entered = str(request.form['artistname'])
-    artist_info = requests.get('http://itunes.apple.com/search?', params = {'term': entered, 'entity': 'song'})
+    artist_info = requests.get('http://itunes.apple.com/search?', params = {'term': entered, 'entity': 'album'})
     json_artist_info = json.loads(artist_info.text)
-    song_l = []
+    album_l = []
     for x in json_artist_info['results']:
-      song = x['trackName']
-      song_l.append(song)
-    return "The user's favorite artist is {}. Here is a list of {} songs: {}".format(entered, entered, str(song_l)) + s
+      album = x['collectionName']
+      album_l.append(album)
+    return "The user's favorite artist is {}. Here is a list of {} albums: {}".format(entered, entered, str(album_l)) + s
   else:
     return s
 
